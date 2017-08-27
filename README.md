@@ -1,5 +1,5 @@
-# freegame-link
+# game-link
 
-source of freegame.link
+source of [some].game.link
 
 This is under constructions at this moments.
