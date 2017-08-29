@@ -1,8 +1,8 @@
 {
   "name": "react-matui",
   "version": "1.0.0",
-  "description": "test of material-ui",
-  "main": "index.js",
+  "main": "index.jsx",
+  "private": true,
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
@@ -22,11 +22,13 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.5",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
+    "style-loader": "^0.18.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
   }

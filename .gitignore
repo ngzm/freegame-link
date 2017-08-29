@@ -1,0 +1,9 @@
+# App
+/result/bundle.js
+
+# js
+/node_modules
+
+# misc
+.DS_Store
+.env

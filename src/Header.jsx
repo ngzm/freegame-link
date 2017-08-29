@@ -18,17 +18,20 @@ HeaderLeftMenu.propTypes = {
 };
 
 const HeaderRightMenu = (props) => (
-  <IconMenu
-    iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
-    }
-    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-  >
-    <MenuItem primaryText="About" />
-    <MenuItem primaryText="Help" />
-    <MenuItem primaryText="Sign in" />
-  </IconMenu>
+  <div>
+    <span>Hello Naoki san</span>
+    <IconMenu
+      iconButtonElement={
+        <IconButton><MoreVertIcon /></IconButton>
+      }
+      targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+      anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+    >
+      <MenuItem primaryText="About" />
+      <MenuItem primaryText="Help" />
+      <MenuItem primaryText="Sign in" />
+    </IconMenu>
+  </div>
 );
 
 class Header extends Component {
