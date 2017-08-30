@@ -7,6 +7,8 @@ import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import Avatar from 'material-ui/Avatar';
+import './Header.css';
 
 const HeaderLeftMenu = props => (
   <IconButton onClick={props.onClick}>
@@ -19,7 +21,12 @@ HeaderLeftMenu.propTypes = {
 
 const HeaderRightMenu = (props) => (
   <div>
-    <span>Hello Naoki san</span>
+    <Avatar
+      color="#FFFFFF"
+      backgroundColor="#3399CC"
+    >
+      A
+    </Avatar>
     <IconMenu
       iconButtonElement={
         <IconButton><MoreVertIcon /></IconButton>
@@ -55,6 +62,7 @@ class Header extends Component {
     return (
       <div>
         <AppBar
+          className="HeaderBar"
           title="MATERIAL UI TEST"
           iconElementLeft={<HeaderLeftMenu onClick={() => { this.toggleDrawer(); }} />}
           iconElementRight={<HeaderRightMenu />}
