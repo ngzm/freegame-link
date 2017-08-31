@@ -70,7 +70,7 @@ class Main extends Component {
               </p>
             </div>
           </Tab>
-          <Tab label="SHOOT" value="b">
+          <Tab label="ADVENTURE" value="b">
             <div>
               <h2 style={styles.headline}>Controllable Tab B</h2>
               <p>
@@ -80,7 +80,7 @@ class Main extends Component {
               </p>
             </div>
           </Tab>
-          <Tab label="FIGHT" value="c">
+          <Tab label="SPORTS" value="c">
             <div>
               <h2 style={styles.headline}>Controllable Tab C</h2>
               <p>
@@ -90,7 +90,7 @@ class Main extends Component {
               </p>
             </div>
           </Tab>
-          <Tab label="FANCY" value="d">
+          <Tab label="BRAIN" value="d">
             <div>
               <h2 style={styles.headline}>Controllable Tab D</h2>
               <p>
@@ -100,37 +100,7 @@ class Main extends Component {
               </p>
             </div>
           </Tab>
-          <Tab label="PAZZLE" value="e">
-            <div>
-              <h2 style={styles.headline}>Controllable Tab D</h2>
-              <p>
-                This is another example of a controllable tab. Remember, if you
-                use controllable Tabs, you need to give all of your tabs values or else
-                you wont be able to select them.
-              </p>
-            </div>
-          </Tab>
-          <Tab label="TABLE" value="f">
-            <div>
-              <h2 style={styles.headline}>Controllable Tab D</h2>
-              <p>
-                This is another example of a controllable tab. Remember, if you
-                use controllable Tabs, you need to give all of your tabs values or else
-                you wont be able to select them.
-              </p>
-            </div>
-          </Tab>
-          <Tab label="URANAI" value="g">
-            <div>
-              <h2 style={styles.headline}>Controllable Tab D</h2>
-              <p>
-                This is another example of a controllable tab. Remember, if you
-                use controllable Tabs, you need to give all of your tabs values or else
-                you wont be able to select them.
-              </p>
-            </div>
-          </Tab>
-          <Tab label="OTHER" value="h">
+          <Tab label="VARIETY" value="e">
             <div>
               <h2 style={styles.headline}>Controllable Tab D</h2>
               <p>

@@ -5,14 +5,26 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
 import Avatar from 'material-ui/Avatar';
+import { CategoryMenu, AttentionMenu } from './Menu';
 import './Header.css';
+
+const DrawerHeaderMenu = props => (
+  <IconButton onClick={props.onClick}>
+    <CloseIcon color="#FFFFFF" />
+  </IconButton>
+);
+DrawerHeaderMenu.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 const HeaderLeftMenu = props => (
   <IconButton onClick={props.onClick}>
-    <MenuIcon />
+    <MenuIcon color="#FFFFFF" />
   </IconButton>
 );
 HeaderLeftMenu.propTypes = {
@@ -29,7 +41,7 @@ const HeaderRightMenu = (props) => (
     </Avatar>
     <IconMenu
       iconButtonElement={
-        <IconButton><MoreVertIcon /></IconButton>
+        <IconButton><MoreVertIcon color="#FFFFFF" /></IconButton>
       }
       targetOrigin={{ horizontal: 'right', vertical: 'top' }}
       anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -74,6 +86,16 @@ class Header extends Component {
           open={this.state.drawerOpen}
           onRequestChange={(o) => { this.setDrawer(o); }}
         >
+          <AppBar
+            className="HeaderBar"
+            title="MENU"
+            showMenuIconButton={false}
+            iconElementRight={<DrawerHeaderMenu onClick={() => { this.setDrawer(false); }} />}
+          />
+          <AttentionMenu />
+          <Divider />
+          <CategoryMenu />
+          <Divider />
           <MenuItem onClick={() => { this.setDrawer(false); }}>Menu Item 1</MenuItem>
           <MenuItem onClick={() => { this.setDrawer(false); }}>Menu Item 2</MenuItem>
         </Drawer>
