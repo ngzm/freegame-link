@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
@@ -7,29 +7,18 @@ import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ActionInfo from 'material-ui/svg-icons/action/info';
+import './SideMenu.css';
 
-export default class Menu extends Component {
-  render() {
-    const style = {
-      display: 'inline-block',
-      margin: '16px 16px 16px 24px',
-      padding: '10px',
-      boxSizing: 'border-box',
-      width: '280px',
-    };
-
-    return (
-      <div>
-        <Paper style={style}>
-          <CategoryMenu />
-        </Paper>
-        <Paper style={style}>
-          <AttentionMenu />
-        </Paper>
-      </div>
-    );
-  }
-}
+export default () => (
+  <div className="MenuPanel">
+    <Paper className="paper">
+      <AttentionMenu />
+    </Paper>
+    <Paper className="paper">
+      <CategoryMenu />
+    </Paper>
+  </div>
+);
 
 export const AttentionMenu = () => (
   <List>

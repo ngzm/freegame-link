@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Header from './Header';
+import Header, { HeaderForMobile } from './Header';
 import Main from './Main';
-import Menu from './Menu';
+import SideMenu from './SideMenu';
 import './App.css';
+
+const MOBILE_SIZE = 1280;
+const getWinSize = () => window.innerWidth;
 
 const BaseFramePC = () => (
   <div className="basepanel">
     <Header />
     <div className="pc">
+      <div className="menu">
+        <SideMenu />
+      </div>
       <div className="main">
         <Main />
-      </div>
-      <div className="menu">
-        <Menu />
       </div>
     </div>
     <Footer />
@@ -22,14 +25,11 @@ const BaseFramePC = () => (
 
 const BaseFrameMobile = () => (
   <div className="basepanel">
-    <Header />
+    <HeaderForMobile />
     <Main />
     <Footer />
   </div>
 );
-
-const MOBILE_SIZE = 1280;
-const getWinSize = () => window.innerWidth;
 
 class App extends Component {
   constructor(props) {

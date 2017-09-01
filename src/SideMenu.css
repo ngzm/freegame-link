@@ -1,0 +1,11 @@
+.MenuPanel {
+  padding: 10px;
+  background-color: #3399CC;
+}
+
+.MenuPanel .paper {
+  display: inline-block !important;
+  box-sizing: border-box !important;
+  width: 280px !important;
+  margin: 10px 10px !important;
+}
