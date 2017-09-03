@@ -1,0 +1,24 @@
+.Main {
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.Main .Container {
+  background-color: lightgray;
+  padding: 0 0 28px 0;
+}
+
+.GridList {
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-wrap: wrap !important;
+  flex-wrap:         wrap !important;
+  -webkit-justify-content: center !important;
+  justify-content:         center !important;
+  overflow: auto !important;
+  height: 680px !important;
+}
+
+.GridTile {
+  width: 250px !important;
+}

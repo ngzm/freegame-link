@@ -4,6 +4,7 @@ import Header from './Header';
 import HeaderMobile from './HeaderMobile';
 import Main from './Main';
 import SideMenu from './SideMenu';
+import Footer from './Footer';
 import './App.css';
 
 const MOBILE_SIZE = 1280;
@@ -17,7 +18,7 @@ const BaseFramePC = () => (
         <SideMenu />
       </div>
       <div className="main">
-        <Main />
+        <Main winSize={getWinSize()} />
       </div>
     </div>
     <Footer />
@@ -27,12 +28,12 @@ const BaseFramePC = () => (
 const BaseFrameMobile = () => (
   <div className="basepanel">
     <HeaderMobile />
-    <Main />
+    <Main winSize={getWinSize()} />
     <Footer />
   </div>
 );
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = { winWidth: getWinSize() };
@@ -44,14 +45,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // window.addEventListener('resize', () => { this.setWinSize(); });
     window.addEventListener('resize', this.resizeHandler);
   }
 
   setWinSize() {
-    const wsize = getWinSize();
-    console.log(`innerWidth : ${wsize}`);
-    this.setState({ winWidth: wsize });
+    this.setState({ winWidth: getWinSize() });
   }
 
   isMobile() {
@@ -59,7 +57,6 @@ class App extends Component {
   }
 
   componentWillUmount() {
-    // window.removeEventListener('resize', () => { this.setWinSize(); });
     window.removeEventListener('resize', this.resizeHandler);
   }
 
@@ -73,11 +70,3 @@ class App extends Component {
     );
   }
 }
-
-const Footer = () => (
-  <div className="footer">
-    <small>FRENCH CONNECTION</small>
-  </div>
-);
-
-export default App;

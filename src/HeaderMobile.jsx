@@ -44,4 +44,3 @@ const HeaderLeftMenuMobile = props => (
   </IconButton>
 );
 HeaderLeftMenuMobile.propTypes = { onClick: PropTypes.func.isRequired };
-
