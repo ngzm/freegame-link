@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Header, { HeaderForMobile } from './Header';
+import Header from './Header';
+import HeaderMobile from './HeaderMobile';
 import Main from './Main';
 import SideMenu from './SideMenu';
 import './App.css';
@@ -25,7 +26,7 @@ const BaseFramePC = () => (
 
 const BaseFrameMobile = () => (
   <div className="basepanel">
-    <HeaderForMobile />
+    <HeaderMobile />
     <Main />
     <Footer />
   </div>

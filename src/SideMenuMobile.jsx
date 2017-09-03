@@ -10,31 +10,12 @@ import CloseIcon from 'material-ui/svg-icons/content/backspace';
 import { CategoryMenu, AttentionMenu } from './SideMenu';
 import './Header.css';
 
-export default class DrawerMenu extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+export default class SideMenuMobile extends Component {
   onClose() {
     this.props.onChange(false);
   }
 
-  menuHeader() {
-    return (
-      <AppBar
-        className="HeaderBar"
-        title="MENU"
-        iconElementLeft={
-          <IconButton onClick={() => { this.onClose(); }}>
-            <CloseIcon color="#FFFFFF" />
-          </IconButton>
-        }
-      />
-    );
-  }
-
   render() {
-    const header = this.menuHeader();
     return (
       <Drawer
         className="MenuDrawer"
@@ -43,7 +24,7 @@ export default class DrawerMenu extends Component {
         open={this.props.open}
         onRequestChange={(o) => { this.props.onChange(o); }}
       >
-        {header}
+        <SideMenuHeader onClick={() => { this.onClose(); }} />
         <AttentionMenu />
         <Divider />
         <CategoryMenu />
@@ -55,7 +36,21 @@ export default class DrawerMenu extends Component {
   }
 }
 
-DrawerMenu.propTypes = {
+SideMenuMobile.propTypes = {
   open: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };
+
+const SideMenuHeader = props => (
+  <AppBar
+    className="HeaderBar"
+    title="MENU"
+    iconElementLeft={
+      <IconButton onClick={() => { props.onClick(); }}>
+        <CloseIcon color="#FFFFFF" />
+      </IconButton>
+    }
+  />
+);
+
+SideMenuHeader.propTypes = { onClick: PropTypes.func.isRequired };

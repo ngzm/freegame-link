@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import DrawerMenu from './DrawerMenu';
-import { HeaderLeftMenu, HeaderRightMenu, HeaderLeftMenuForMobile } from './HeaderMenu';
+import IconMenu from 'material-ui/IconMenu';
+import IconButton from 'material-ui/IconButton';
+import MenuItem from 'material-ui/MenuItem';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import Avatar from 'material-ui/Avatar';
 import './Header.css';
 
 export default () => (
@@ -13,33 +17,37 @@ export default () => (
   />
 );
 
-export class HeaderForMobile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
-  }
+export const HeaderLeftMenu = () => (
+  <IconMenu
+    iconButtonElement={
+      <IconButton><MenuIcon color="#FFFFFF" /></IconButton>
+    }
+    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+    anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+  >
+    <MenuItem primaryText="About" />
+    <MenuItem primaryText="Help" />
+  </IconMenu>
+);
 
-  setDrawer(open) {
-    this.setState({ open });
-  }
-
-  toggleDrawer() {
-    this.setState({ open: !this.state.open });
-  }
-
-  render() {
-    return (
-      <div>
-        <AppBar
-          className="HeaderBar"
-          title="MATERIAL UI TEST"
-          iconElementLeft={<HeaderLeftMenuForMobile onClick={() => { this.toggleDrawer(); }} />}
-          iconElementRight={<HeaderRightMenu />}
-        />
-        <DrawerMenu open={this.state.open} onChange={(o) => { this.setDrawer(o); }} />
-      </div>
-    );
-  }
-}
+export const HeaderRightMenu = () => (
+  <div>
+    <Avatar
+      color="#FFFFFF"
+      backgroundColor="#3399CC"
+    >
+      A
+    </Avatar>
+    <IconMenu
+      iconButtonElement={
+        <IconButton><MoreVertIcon color="#FFFFFF" /></IconButton>
+      }
+      targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+      anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+    >
+      <MenuItem primaryText="About" />
+      <MenuItem primaryText="Help" />
+      <MenuItem primaryText="Sign in" />
+    </IconMenu>
+  </div>
+);
