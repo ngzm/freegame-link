@@ -7,6 +7,7 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import Star from 'material-ui/svg-icons/toggle/star';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import IconButton from 'material-ui/IconButton';
+import AppStyle, { getWinSize } from './AppStyle';
 import './Main.css';
 
 const tilesData = [
@@ -65,9 +66,31 @@ export default class Main extends Component {
   }
 
   render() {
-    const cols = (this.props.winSize > 1280)
-      ? ((this.props.winSize - 380 - 60) / 250)
-      : ((this.props.winSize - 60) / 250);
+    const winSize = getWinSize();
+    const mainSize = (winSize > AppStyle.MINIMUM_PC_WIDTH)
+      ? (winSize - 300) * 0.88
+      : winSize * 0.88;
+    const cols = Math.floor(mainSize / AppStyle.MAIN_GRIDTILE_WIDTH);
+
+    const acnt = (tilesData.length % cols) > 0 ? cols - (tilesData.length % cols) : 0;
+    const additional = [];
+    for (let i = 0; i < acnt; i += 1) {
+      const key = `additional-${i}`;
+      additional.push(<GridTile key={key} />);
+    }
+
+    console.log(`cols = ${cols}`);
+    const gwidth = (cols * (AppStyle.MAIN_GRIDTILE_WIDTH + AppStyle.MAIN_GRIDLIST_PAD)) + 18;
+    console.log(`gwidth = ${gwidth}`);
+
+    const style = {
+      gridList: {
+        width: gwidth,
+      },
+      gridTile: {
+        width: AppStyle.MAIN_GRIDTILE_WIDTH,
+      },
+    };
 
     return (
       <main className="Main">
@@ -84,12 +107,17 @@ export default class Main extends Component {
           </Badge>
         </div>
         <div className="Container">
-          <GridList className="GridList" cellHeight={180} padding={10} cols={cols}>
+          <GridList
+            style={style.gridList}
+            cellHeight={AppStyle.MAIN_GRIDTILE_HEIGHT}
+            padding={AppStyle.MAIN_GRIDLIST_PAD}
+            cols={cols}
+          >
             <Subheader>December</Subheader>
             {tilesData.map(tile => (
               <GridTile
                 key={tile.img}
-                className="GridTile"
+                style={style.gridTile}
                 title={tile.title}
                 subtitle={
                   <div>
@@ -109,11 +137,10 @@ export default class Main extends Component {
                 <img src={tile.img} alt={tile.title} />
               </GridTile>
             ))}
+            {additional}
           </GridList>
         </div>
       </main>
     );
   }
 }
-
-Main.propTypes = { winSize: PropTypes.number.isRequired };

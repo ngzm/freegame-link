@@ -1,24 +1,15 @@
 .Main {
-  margin: 0 auto;
+  margin: 0;
   padding: 18px;
 }
 
 .Main .Container {
+  padding: 30px 0;
   background-color: lightgray;
-  padding: 0 0 28px 0;
-}
-
-.GridList {
-  display: -webkit-flex !important;
-  display: flex !important;
-  -webkit-flex-wrap: wrap !important;
-  flex-wrap:         wrap !important;
-  -webkit-justify-content: center !important;
-  justify-content:         center !important;
-  overflow: auto !important;
-  height: 680px !important;
-}
-
-.GridTile {
-  width: 250px !important;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap:         wrap;
+  -webkit-justify-content: space-around;
+  justify-content:         space-around;
 }

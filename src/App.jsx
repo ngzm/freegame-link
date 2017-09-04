@@ -5,10 +5,8 @@ import HeaderMobile from './HeaderMobile';
 import Main from './Main';
 import SideMenu from './SideMenu';
 import Footer from './Footer';
+import AppStyle, { getWinSize } from './AppStyle';
 import './App.css';
-
-const MOBILE_SIZE = 1280;
-const getWinSize = () => window.innerWidth;
 
 const BaseFramePC = () => (
   <div className="basepanel">
@@ -18,7 +16,7 @@ const BaseFramePC = () => (
         <SideMenu />
       </div>
       <div className="main">
-        <Main winSize={getWinSize()} />
+        <Main />
       </div>
     </div>
     <Footer />
@@ -28,7 +26,7 @@ const BaseFramePC = () => (
 const BaseFrameMobile = () => (
   <div className="basepanel">
     <HeaderMobile />
-    <Main winSize={getWinSize()} />
+    <Main />
     <Footer />
   </div>
 );
@@ -53,7 +51,7 @@ export default class App extends Component {
   }
 
   isMobile() {
-    return (this.state.winWidth < MOBILE_SIZE);
+    return (this.state.winWidth < AppStyle.MINIMUM_PC_WIDTH);
   }
 
   componentWillUmount() {

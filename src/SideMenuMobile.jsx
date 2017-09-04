@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import CloseIcon from 'material-ui/svg-icons/content/backspace';
-
+import AppStyle from './AppStyle';
 import { CategoryMenu, AttentionMenu } from './SideMenu';
 import './Header.css';
 
@@ -20,7 +20,7 @@ export default class SideMenuMobile extends Component {
       <Drawer
         className="MenuDrawer"
         docked={false}
-        width={300}
+        width={AppStyle.SIDEMENU_WIDTH}
         open={this.props.open}
         onRequestChange={(o) => { this.props.onChange(o); }}
       >
