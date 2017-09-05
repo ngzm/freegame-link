@@ -2,11 +2,9 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-import ContentInbox from 'material-ui/svg-icons/content/inbox';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ActionInfo from 'material-ui/svg-icons/action/info';
+import RdxSideMenuItem from '../containers/RdxSideMenuItem';
+import { CATEGORY_KEY } from '../modules/category';
 import './SideMenu.css';
 
 export default () => (
@@ -33,17 +31,17 @@ export const AttentionMenu = () => (
 export const CategoryMenu = () => (
   <List>
     <Subheader>Category</Subheader>
-    <ListItem primaryText="Action" leftIcon={<ContentInbox />} />
-    <ListItem primaryText="Adventure" leftIcon={<ActionGrade />} />
-    <ListItem primaryText="Racing" leftIcon={<ContentSend />} />
-    <ListItem primaryText="Shooting" leftIcon={<ContentSend />} />
-    <ListItem primaryText="Battle" leftIcon={<ContentDrafts />} />
-    <ListItem primaryText="Sports" leftIcon={<ContentDrafts />} />
-    <ListItem primaryText="Fancy" leftIcon={<ContentInbox />} />
-    <ListItem primaryText="Puzzle" leftIcon={<ContentDrafts />} />
-    <ListItem primaryText="Jewells" leftIcon={<ContentDrafts />} />
-    <ListItem primaryText="Brain" leftIcon={<ContentInbox />} />
-    <ListItem primaryText="Table" leftIcon={<ContentInbox />} />
-    <ListItem primaryText="Variety" leftIcon={<ContentInbox />} />
+    <RdxSideMenuItem category={CATEGORY_KEY.action} />
+    <RdxSideMenuItem category={CATEGORY_KEY.adventure} />
+    <RdxSideMenuItem category={CATEGORY_KEY.racing} />
+    <RdxSideMenuItem category={CATEGORY_KEY.shooting} />
+    <RdxSideMenuItem category={CATEGORY_KEY.battle} />
+    <RdxSideMenuItem category={CATEGORY_KEY.sports} />
+    <RdxSideMenuItem category={CATEGORY_KEY.fancy} />
+    <RdxSideMenuItem category={CATEGORY_KEY.puzzle} />
+    <RdxSideMenuItem category={CATEGORY_KEY.jewels} />
+    <RdxSideMenuItem category={CATEGORY_KEY.brain} />
+    <RdxSideMenuItem category={CATEGORY_KEY.table} />
+    <RdxSideMenuItem category={CATEGORY_KEY.variety} />
   </List>
 );

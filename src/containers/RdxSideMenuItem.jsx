@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { setCategory } from '../modules/games';
-import SideListItem from '../components/SideListItem';
+import { setCategory } from '../modules/category';
+import SideMenuItem from '../components/SideMenuItem';
 
 const mapStateToProps = (state, ownProps) => (
   {
@@ -15,4 +15,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SideListItem);
+)(SideMenuItem);
