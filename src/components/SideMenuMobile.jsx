@@ -7,15 +7,17 @@ import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import CloseIcon from 'material-ui/svg-icons/content/backspace';
 import AppStyle from './AppStyle';
-import { CategoryMenu, AttentionMenu } from './SideMenu';
+import { CommandMenu, CategoryMenu } from './SideMenu';
 import './Header.css';
 
 export default class SideMenuMobile extends Component {
-  onClose() {
+  close() {
     this.props.onChange(false);
   }
 
   render() {
+    const cfunc = () => { this.close(); };
+
     return (
       <Drawer
         className="MenuDrawer"
@@ -24,13 +26,13 @@ export default class SideMenuMobile extends Component {
         open={this.props.open}
         onRequestChange={(o) => { this.props.onChange(o); }}
       >
-        <SideMenuHeader onClick={() => { this.onClose(); }} />
-        <AttentionMenu />
+        <SideMenuHeader onClick={cfunc} />
+        <CommandMenu onClick={cfunc} />
         <Divider />
-        <CategoryMenu />
+        <CategoryMenu onClick={cfunc} />
         <Divider />
-        <MenuItem onClick={() => { this.onClose(); }}>Menu Item 1</MenuItem>
-        <MenuItem onClick={() => { this.onClose(); }}>Menu Item 2</MenuItem>
+        <MenuItem onClick={cfunc}>Menu Item 1</MenuItem>
+        <MenuItem onClick={cfunc}>Menu Item 2</MenuItem>
       </Drawer>
     );
   }

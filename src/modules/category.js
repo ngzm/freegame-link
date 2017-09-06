@@ -20,7 +20,7 @@ export const setCategory = category => ({
   category,
 });
 
-export const category = (state = CATEGORY_KEY.variety, action) => {
+export const category = (state = CATEGORY_KEY.action, action) => {
   switch (action.type) {
     case SET_CATEGORY:
       return action.category;

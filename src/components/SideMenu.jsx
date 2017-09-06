@@ -1,16 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import ActionInfo from 'material-ui/svg-icons/action/info';
-import RdxSideMenuItem from '../containers/RdxSideMenuItem';
+import RdxCategoryMenuItem from '../containers/RdxCategoryMenuItem';
 import { CATEGORY_KEY } from '../modules/category';
 import './SideMenu.css';
 
 export default () => (
   <div className="MenuPanel">
     <Paper className="paper">
-      <AttentionMenu />
+      <CommandMenu />
     </Paper>
     <Paper className="paper">
       <CategoryMenu />
@@ -18,9 +19,9 @@ export default () => (
   </div>
 );
 
-export const AttentionMenu = () => (
+export const CommandMenu = () => (
   <List>
-    <Subheader>Attention</Subheader>
+    <Subheader>Command</Subheader>
     <ListItem primaryText="New Update" rightIcon={<ActionInfo />} />
     <ListItem primaryText="Stars" rightIcon={<ActionInfo />} />
     <ListItem primaryText="Bookmarks" rightIcon={<ActionInfo />} />
@@ -28,20 +29,26 @@ export const AttentionMenu = () => (
   </List>
 );
 
-export const CategoryMenu = () => (
-  <List>
-    <Subheader>Category</Subheader>
-    <RdxSideMenuItem category={CATEGORY_KEY.action} />
-    <RdxSideMenuItem category={CATEGORY_KEY.adventure} />
-    <RdxSideMenuItem category={CATEGORY_KEY.racing} />
-    <RdxSideMenuItem category={CATEGORY_KEY.shooting} />
-    <RdxSideMenuItem category={CATEGORY_KEY.battle} />
-    <RdxSideMenuItem category={CATEGORY_KEY.sports} />
-    <RdxSideMenuItem category={CATEGORY_KEY.fancy} />
-    <RdxSideMenuItem category={CATEGORY_KEY.puzzle} />
-    <RdxSideMenuItem category={CATEGORY_KEY.jewels} />
-    <RdxSideMenuItem category={CATEGORY_KEY.brain} />
-    <RdxSideMenuItem category={CATEGORY_KEY.table} />
-    <RdxSideMenuItem category={CATEGORY_KEY.variety} />
-  </List>
-);
+export const CategoryMenu = ({ onClick }) => {
+  const cfunc = () => { onClick(); };
+  return (
+    <List>
+      <Subheader>Category</Subheader>
+      <RdxCategoryMenuItem category={CATEGORY_KEY.action} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.adventure} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.racing} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.shooting} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.battle} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.sports} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.fancy} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.puzzle} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.jewels} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.brain} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.table} onClick={cfunc} />
+      <RdxCategoryMenuItem category={CATEGORY_KEY.variety} onClick={cfunc} />
+    </List>
+  );
+};
+
+CategoryMenu.propTypes = { onClick: PropTypes.func };
+CategoryMenu.defaultProps = { onClick: () => {} };

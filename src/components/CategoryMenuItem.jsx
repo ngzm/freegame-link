@@ -8,7 +8,10 @@ import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import { CATEGORY_KEY } from '../modules/category';
 import './SideMenu.css';
 
-const SideMenuItem = (props) => {
+const CategoryMenuItem = (props) => {
+  console.log('props --------------');
+  console.dir(props);
+
   const style = (props.active)
     ? { color: 'yellow', backgroundColor: '#BBBBBB' }
     : {};
@@ -87,15 +90,15 @@ const SideMenuItem = (props) => {
       style={style}
       primaryText={primaryText}
       leftIcon={leftIcon}
-      onClick={() => { props.onClick(); }}
+      onClick={() => { props.onClickRdx(); }}
     />
   );
 };
 
-SideMenuItem.propTypes = {
+CategoryMenuItem.propTypes = {
   active: PropTypes.bool.isRequired,
   category: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClickRdx: PropTypes.func.isRequired,
 };
 
-export default SideMenuItem;
+export default CategoryMenuItem;
