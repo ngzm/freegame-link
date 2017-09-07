@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
-import { setGames } from '../modules/games';
-import MainGridList from '../components/MainGridList';
+import { setGames } from '../rdxs/games';
+import GamesList from '../components/GamesList';
 
 const mapStateToProps = state => ({
-  category: state.category,
-  games: state.games, // 本当はここでソートする
+  param: { category: state.category, games: state.games },
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -16,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MainGridList);
+)(GamesList);
