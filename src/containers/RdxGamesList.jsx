@@ -3,7 +3,8 @@ import { setGames } from '../rdxs/games';
 import GamesList from '../components/GamesList';
 
 const mapStateToProps = state => ({
-  param: { category: state.category, games: state.games },
+  category: state.category,
+  games: state.games,
 });
 
 const mapDispatchToProps = dispatch => ({

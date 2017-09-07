@@ -5,7 +5,7 @@ import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import { CATEGORY_KEY } from '../modules/category';
+import { CATEGORY_KEY } from '../rdxs/category';
 import './SideMenu.css';
 
 const CategoryMenuItem = (props) => {

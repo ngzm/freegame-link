@@ -15,7 +15,7 @@ export default class GamesList extends Components {
   }
 
   componentWillMount() {
-    this.getGameList(this.props.param.category);
+    this.getGameList(this.props.category);
   }
 
   componentWillRecieveProps(nextProps) {
@@ -26,8 +26,8 @@ export default class GamesList extends Components {
     return (
       <div className="Container">
         <MainGridList
-          category={this.props.param.category}
-          games={this.props.param.games}
+          category={this.props.category}
+          games={this.props.games}
         />
       </div>
     );
@@ -35,20 +35,18 @@ export default class GamesList extends Components {
 }
 
 GamesList.propTypes = {
-  param: PropTypes.shape({
-    category: PropTypes.number.isRequired,
-    games: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-      category1: PropTypes.number.isRequired,
-      category2: PropTypes.number.isRequired,
-      category3: PropTypes.number.isRequired,
-      iconUri: PropTypes.string.isRequired,
-      star: PropTypes.number.isRequired,
-      access: PropTypes.number.isRequired,
-    })).isRequired,
-  }).isRequired,
+  category: PropTypes.number.isRequired,
+  games: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    category1: PropTypes.number.isRequired,
+    category2: PropTypes.number.isRequired,
+    category3: PropTypes.number.isRequired,
+    iconUri: PropTypes.string.isRequired,
+    star: PropTypes.number.isRequired,
+    access: PropTypes.number.isRequired,
+  })).isRequired,
   setGames: PropTypes.func.isRequired,
 };

@@ -5,7 +5,7 @@ import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import RdxCategoryMenuItem from '../containers/RdxCategoryMenuItem';
-import { CATEGORY_KEY } from '../modules/category';
+import { CATEGORY_KEY } from '../rdxs/category';
 import './SideMenu.css';
 
 export default () => (

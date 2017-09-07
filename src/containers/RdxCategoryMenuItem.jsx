@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setCategory } from '../modules/category';
+import { setCategory } from '../rdxs/category';
 import CategoryMenuItem from '../components/CategoryMenuItem';
 
 const mapStateToProps = (state, ownProps) => {
