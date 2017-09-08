@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { incAccess } from '../rdxs/games';
-import MainGridList from '../components/MainGridList';
+import GameGridTile from '../components/GameGridTile';
 
 const mapDispatchToProps = dispatch => ({
   incAccess: (id) => {
@@ -8,4 +8,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(MainGridList);
+export default connect(null, mapDispatchToProps)(GameGridTile);

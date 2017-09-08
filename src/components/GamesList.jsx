@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import RdxMainGridList from '../containers/RdxMainGridList';
+import GameGridList from './GameGridList';
 import GameService from '../services/gameService';
 import './Main.css';
 
@@ -26,7 +26,7 @@ export default class GamesList extends Component {
   render() {
     return (
       <div className="Container">
-        <RdxMainGridList
+        <GameGridList
           wsize={this.props.wsize}
           category={this.props.category}
           games={this.props.games}
