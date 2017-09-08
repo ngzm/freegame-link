@@ -9,7 +9,6 @@ import './Main.css';
 
 const MainGridTile = ({ game, incAccess }) => (
   <GridTile
-    key={game.id}
     title={game.title}
     style={{ width: AppStyle.MAIN_GRIDTILE_WIDTH }}
     subtitle={
