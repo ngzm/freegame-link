@@ -3,28 +3,37 @@ import PropTypes from 'prop-types';
 import { GridList } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import MainGridTile from './MainGridTile';
-import AppStyle from './AppStyle';
+import AppStyle, { calcGridCols, calcGridWidth } from './AppStyle';
 import './Main.css';
 
 export default class MainGridList extends Component {
-  static calcGridCols(winSize) {
-    const mainSize = (winSize > AppStyle.MINIMUM_PC_WIDTH)
-      ? (winSize - 320) - 120
-      : winSize - 120;
-    return Math.floor(mainSize / AppStyle.MAIN_GRIDTILE_WIDTH);
-  }
+  onTileClick(id) {
+    // 1) Games databese update
+    // Using gameService function
+    // ......
 
-  static calcGridWidth(cols) {
-    return (cols * (AppStyle.MAIN_GRIDTILE_WIDTH + AppStyle.MAIN_GRIDLIST_PAD)) + 18;
+    // 2) Redux state increments Access
+    // Using Redux container's function
+    this.props.incAccess(id);
+
+    // 3) Routing Clicked game contents
+    // ....
+    // ....
   }
 
   render() {
-    const [category, games] = [this.props.category, this.props.games];
-    const cols = MainGridList.calcGridCols(this.props.wsize);
-    const width = MainGridList.calcGridWidth(cols);
+    const [wsize, category, games] = [this.props.wsize, this.props.category, this.props.games];
+    const cols = calcGridCols(wsize);
+    const width = calcGridWidth(cols);
     const cellHeight = AppStyle.MAIN_GRIDTILE_HEIGHT;
     const padding = AppStyle.MAIN_GRIDLIST_PAD;
-    const gameTiles = games.map(g => <MainGridTile key={g.id} game={g} />);
+    const gameTiles = games.map(g => (
+      <MainGridTile
+        key={g.id}
+        game={g}
+        incAccess={() => { this.onTileClick(g.id); }}
+      />
+    ));
 
     console.log(`cols = ${cols}`);
     console.log(`width = ${width}`);
@@ -53,4 +62,5 @@ MainGridList.propTypes = {
     star: PropTypes.number.isRequired,
     access: PropTypes.number.isRequired,
   })).isRequired,
+  incAccess: PropTypes.func.isRequired,
 };

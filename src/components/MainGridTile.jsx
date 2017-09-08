@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import AppStyle from './AppStyle';
 import './Main.css';
 
-const MainGridTile = ({ game }) => (
+const MainGridTile = ({ game, incAccess }) => (
   <GridTile
     key={game.id}
     title={game.title}
@@ -23,7 +23,11 @@ const MainGridTile = ({ game }) => (
         {game.access}
       </div>
     }
-    actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+    actionIcon={
+      <IconButton onClick={() => { incAccess(); }}>
+        <StarBorder color="white" />
+      </IconButton>
+    }
   >
     <img src={game.iconUri} alt={game.title} />
   </GridTile>
@@ -42,6 +46,7 @@ MainGridTile.propTypes = {
     star: PropTypes.number.isRequired,
     access: PropTypes.number.isRequired,
   }).isRequired,
+  incAccess: PropTypes.func.isRequired,
 };
 
 export default MainGridTile;
