@@ -1,31 +1,33 @@
-import React, { Components } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import MainGridList from './MainGridList';
 import GameService from '../services/gameService';
 import './Main.css';
 
-export default class GamesList extends Components {
-  getGameList(category) {
-    GameService.getGames(
-      category,
-      (res) => { this.props.setGames(res.data); },
-      (err) => { console.log(`Error!! ${err}`); },
-    );
-  }
-
+export default class GamesList extends Component {
   componentWillMount() {
     this.getGameList(this.props.category);
   }
 
-  componentWillRecieveProps(nextProps) {
-    this.getGameList(nextProps.category);
+  componentWillReceiveProps(nextProps) {
+    console.log('willReceiveProps in');
+    if (this.props.category !== nextProps.category) {
+      this.getGameList(nextProps.category);
+    }
+  }
+
+  getGameList(category) {
+    GameService.getGames(category,
+      (res) => { this.props.setGames(res.data); },
+      (err) => { console.log(`Error!! ${err}`); },
+    );
   }
 
   render() {
     return (
       <div className="Container">
         <MainGridList
+          wsize={this.props.wsize}
           category={this.props.category}
           games={this.props.games}
         />
@@ -35,6 +37,7 @@ export default class GamesList extends Components {
 }
 
 GamesList.propTypes = {
+  wsize: PropTypes.number.isRequired,
   category: PropTypes.number.isRequired,
   games: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,

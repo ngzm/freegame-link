@@ -2,10 +2,9 @@ import { connect } from 'react-redux';
 import { setCategory } from '../rdxs/category';
 import CategoryMenuItem from '../components/CategoryMenuItem';
 
-const mapStateToProps = (state, ownProps) => {
-  console.log(`state.category = ${state.category}`);
-  return { active: (ownProps.category === state.category) };
-};
+const mapStateToProps = (state, ownProps) => ({
+  active: (ownProps.category === state.category),
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClickRdx: () => {

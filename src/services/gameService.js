@@ -9,7 +9,7 @@ export default class UploadService {
    */
   static getGames(category, success, fail) {
     // const url = (category) ? `/game/category/${category}` : '/game/category/';
-    const url = '/games/games1.json';
+    const url = `/games/games${category}.json`;
     naxios.get(url)
       .then((res) => { success(res); })
       .catch((err) => { fail(err); });

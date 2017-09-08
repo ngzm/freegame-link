@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { GridList } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import MainGridTile from './MainGridTile';
-import AppStyle, { getWinSize } from './AppStyle';
+import AppStyle from './AppStyle';
 import './Main.css';
 
 export default class MainGridList extends Component {
@@ -20,7 +20,7 @@ export default class MainGridList extends Component {
 
   render() {
     const [category, games] = [this.props.category, this.props.games];
-    const cols = MainGridList.calcGridCols(getWinSize());
+    const cols = MainGridList.calcGridCols(this.props.wsize);
     const width = MainGridList.calcGridWidth(cols);
     const cellHeight = AppStyle.MAIN_GRIDTILE_HEIGHT;
     const padding = AppStyle.MAIN_GRIDLIST_PAD;
@@ -39,6 +39,7 @@ export default class MainGridList extends Component {
 }
 
 MainGridList.propTypes = {
+  wsize: PropTypes.number.isRequired,
   category: PropTypes.number.isRequired,
   games: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,

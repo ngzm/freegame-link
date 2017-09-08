@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from './Header';
 import HeaderMobile from './HeaderMobile';
@@ -8,7 +9,7 @@ import Footer from './Footer';
 import AppStyle, { getWinSize } from './AppStyle';
 import './App.css';
 
-const BaseFramePC = () => (
+const BaseFramePC = ({ wsize }) => (
   <div className="basepanel">
     <Header />
     <div className="pc">
@@ -16,20 +17,22 @@ const BaseFramePC = () => (
         <SideMenu />
       </div>
       <div className="main">
-        <Main />
+        <Main wsize={wsize} />
       </div>
     </div>
     <Footer />
   </div>
 );
+BaseFramePC.propTypes = { wsize: PropTypes.number.isRequired };
 
-const BaseFrameMobile = () => (
+const BaseFrameMobile = ({ wsize }) => (
   <div className="basepanel">
     <HeaderMobile />
-    <Main />
+    <Main wsize={wsize} />
     <Footer />
   </div>
 );
+BaseFrameMobile.propTypes = { wsize: PropTypes.number.isRequired };
 
 export default class App extends Component {
   constructor(props) {
@@ -63,7 +66,7 @@ export default class App extends Component {
 
     return (
       <MuiThemeProvider>
-        <BaseFrame />
+        <BaseFrame wsize={this.state.winWidth} />
       </MuiThemeProvider>
     );
   }
