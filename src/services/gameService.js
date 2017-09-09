@@ -8,6 +8,8 @@ export default class UploadService {
    * get games which belongs to the category
    */
   static getGames(category, success, fail) {
+    console.log('naxios --- getGames in --');
+
     // const url = (category) ? `/game/category/${category}` : '/game/category/';
     const url = `/games/games${category}.json`;
     naxios.get(url)

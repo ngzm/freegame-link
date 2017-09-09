@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { GridTile } from 'material-ui/GridList';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import Star from 'material-ui/svg-icons/toggle/star';
@@ -7,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import AppStyle from './AppStyle';
 import './Main.css';
 
-export default class MainGridTile extends Component {
+class MainGridTile extends Component {
   onTileClick() {
     const id = this.props.game.id;
 
@@ -20,8 +21,8 @@ export default class MainGridTile extends Component {
     this.props.incAccess(id);
 
     // 3) Routing Clicked game contents
-    // ....
-    // ....
+    const url = `/${id}`;
+    this.props.history.push(url);
   }
 
   render() {
@@ -54,6 +55,9 @@ export default class MainGridTile extends Component {
 }
 
 MainGridTile.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   game: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -68,3 +72,5 @@ MainGridTile.propTypes = {
   }).isRequired,
   incAccess: PropTypes.func.isRequired,
 };
+
+export default withRouter(MainGridTile);

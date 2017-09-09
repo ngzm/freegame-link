@@ -15,6 +15,24 @@ export const CATEGORY_KEY = {
   variety: 12,
 };
 
+export const getCategoryLabel = (key) => {
+  const key2label = {
+    1: 'Action',
+    2: 'Adventure',
+    3: 'Racing',
+    4: 'Shooting',
+    5: 'Battle',
+    6: 'Sports',
+    7: 'Fancy',
+    8: 'Puzzle',
+    9: 'Jewells',
+    10: 'Brain',
+    11: 'Table',
+    12: 'Variety',
+  };
+  return key2label[key];
+};
+
 export const setCategory = category => ({
   type: SET_CATEGORY,
   category,

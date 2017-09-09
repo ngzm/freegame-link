@@ -1,15 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Switch, Route } from 'react-router-dom';
 import Badge from 'material-ui/Badge';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import IconButton from 'material-ui/IconButton';
 import RdxGamesList from '../containers/RdxGamesList';
+import GameContent from './GameContent';
 import './Main.css';
 
 const Main = ({ wsize }) => (
   <main className="Main">
     <NoticeBar />
-    <RdxGamesList wsize={wsize} />
+    <Switch>
+      <Route
+        exact
+        path="/"
+        render={p => (<RdxGamesList {...p} wsize={wsize} />)}
+      />
+      <Route path="/:id" component={GameContent} />
+    </Switch>
   </main>
 );
 Main.propTypes = { wsize: PropTypes.number.isRequired };

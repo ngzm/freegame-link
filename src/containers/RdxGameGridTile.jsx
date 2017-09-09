@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { incAccess } from '../rdxs/games';
 import GameGridTile from '../components/GameGridTile';
 
@@ -8,4 +9,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(GameGridTile);
+export default withRouter(
+  connect(null, mapDispatchToProps)(GameGridTile),
+);

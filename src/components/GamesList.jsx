@@ -6,12 +6,18 @@ import './Main.css';
 
 export default class GamesList extends Component {
   componentWillMount() {
+    console.log('GameList: willMount in');
+    window.scrollTo(0, 0);
     this.getGameList(this.props.category);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('willReceiveProps in');
+    console.log('GameList: willReceiveProps in');
+    console.log(`props category = ${this.props.category}`);
+    console.log(`nextprops category = ${nextProps.category}`);
+
     if (this.props.category !== nextProps.category) {
+      console.log('reset game list');
       this.getGameList(nextProps.category);
     }
   }
