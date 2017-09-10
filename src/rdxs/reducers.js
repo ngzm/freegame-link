@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { games } from './games';
-import { category } from './category';
-import { sortkey } from './sortkey';
+import { command } from './command';
+import { vwindow } from './vwindow';
 
 export default combineReducers({
   games,
-  category,
-  sortkey,
+  command,
+  vwindow,
 });

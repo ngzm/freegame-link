@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { GridTile } from 'material-ui/GridList';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import Star from 'material-ui/svg-icons/toggle/star';
 import IconButton from 'material-ui/IconButton';
+import { incAccess } from '../rdxs/games';
 import AppStyle from './AppStyle';
 import './Main.css';
 
-class MainGridTile extends Component {
+class GameGridTile extends Component {
   onTileClick() {
     const id = this.props.game.id;
 
@@ -54,10 +56,8 @@ class MainGridTile extends Component {
   }
 }
 
-MainGridTile.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+GameGridTile.propTypes = {
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   game: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -73,4 +73,18 @@ MainGridTile.propTypes = {
   incAccess: PropTypes.func.isRequired,
 };
 
-export default withRouter(MainGridTile);
+/**
+ * Redux Dispatcher to Props func
+ */
+const mapDispatchToProps = dispatch => ({
+  incAccess: (id) => {
+    dispatch(incAccess(id));
+  },
+});
+
+/**
+ * Redux connect
+ */
+export default withRouter(
+  connect(null, mapDispatchToProps)(GameGridTile),
+);

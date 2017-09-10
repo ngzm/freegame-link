@@ -4,8 +4,8 @@ import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import ActionInfo from 'material-ui/svg-icons/action/info';
-import RdxCategoryMenuItem from '../containers/RdxCategoryMenuItem';
-import { CATEGORY_KEY } from '../rdxs/category';
+import CategoryMenuItem from './CategoryMenuItem';
+import { CATEGORY_KEY } from '../services/gameCategory';
 import './SideMenu.css';
 
 export default () => (
@@ -29,26 +29,26 @@ export const CommandMenu = () => (
   </List>
 );
 
-export const CategoryMenu = ({ onClick }) => {
-  const cfunc = () => { onClick(); };
+export const CategoryMenu = ({ closeDrawer }) => {
+  const cfunc = () => { closeDrawer(); };
   return (
     <List>
       <Subheader>Category</Subheader>
-      <RdxCategoryMenuItem category={CATEGORY_KEY.action} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.adventure} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.racing} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.shooting} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.battle} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.sports} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.fancy} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.puzzle} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.jewels} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.brain} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.table} onClick={cfunc} />
-      <RdxCategoryMenuItem category={CATEGORY_KEY.variety} onClick={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.action} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.adventure} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.racing} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.shooting} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.battle} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.sports} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.fancy} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.puzzle} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.jewels} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.brain} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.table} closeDrawer={cfunc} />
+      <CategoryMenuItem category={CATEGORY_KEY.variety} closeDrawer={cfunc} />
     </List>
   );
 };
 
-CategoryMenu.propTypes = { onClick: PropTypes.func };
-CategoryMenu.defaultProps = { onClick: () => {} };
+CategoryMenu.propTypes = { closeDrawer: PropTypes.func };
+CategoryMenu.defaultProps = { closeDrawer: () => {} };

@@ -1,78 +1,47 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { ListItem } from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import { CATEGORY_KEY, getCategoryLabel } from '../rdxs/category';
+import { setCategory } from '../rdxs/command';
+import { fetchGames } from '../rdxs/games';
+import { CATEGORY_LABEL } from '../services/gameCategory';
 import './SideMenu.css';
+
+const CATEGORY_ICON = {
+  1: <ContentInbox />,
+  2: <ActionGrade />,
+  3: <ContentSend />,
+  4: <ContentDrafts />,
+  5: <ContentInbox />,
+  6: <ActionGrade />,
+  7: <ContentSend />,
+  8: <ContentDrafts />,
+  9: <ContentInbox />,
+  10: <ActionGrade />,
+  11: <ContentSend />,
+  12: <ContentDrafts />,
+};
 
 class CategoryMenuItem extends Component {
   onItemClick() {
-    this.props.onClickRdx();
-    this.props.history.push('/');
-  }
+    if (!this.props.active) {
+      // set game category
+      this.props.setCategory();
 
-  getItem() {
-    let label = getCategoryLabel(this.props.category);
-    let icon;
-    switch (this.props.category) {
-      case CATEGORY_KEY.action:
-        icon = <ContentInbox />;
-        break;
-
-      case CATEGORY_KEY.adventure:
-        icon = <ActionGrade />;
-        break;
-
-      case CATEGORY_KEY.racing:
-        icon = <ContentSend />;
-        break;
-
-      case CATEGORY_KEY.shooting:
-        icon = <ContentDrafts />;
-        break;
-
-      case CATEGORY_KEY.battle:
-        icon = <ContentInbox />;
-        break;
-
-      case CATEGORY_KEY.sports:
-        icon = <ActionGrade />;
-        break;
-
-      case CATEGORY_KEY.fancy:
-        icon = <ContentSend />;
-        break;
-
-      case CATEGORY_KEY.puzzle:
-        icon = <ContentDrafts />;
-        break;
-
-      case CATEGORY_KEY.jewells:
-        icon = <ContentInbox />;
-        break;
-
-      case CATEGORY_KEY.brain:
-        icon = <ActionGrade />;
-        break;
-
-      case CATEGORY_KEY.table:
-        icon = <ContentSend />;
-        break;
-
-      case CATEGORY_KEY.variety:
-        icon = <ContentDrafts />;
-        break;
-
-      default:
-        label = 'Action';
-        icon = <ContentInbox />;
-        break;
+      // Fetch array of game datas
+      this.props.fetchGames();
     }
-    return [label, icon];
+
+    // Close Drawer Menu (if Drawer)
+    this.props.closeDrawer();
+
+    // Route to Games List
+    this.props.history.push('/');
   }
 
   getStyle() {
@@ -82,7 +51,8 @@ class CategoryMenuItem extends Component {
   }
 
   render() {
-    const [label, icon] = this.getItem();
+    const label = CATEGORY_LABEL[this.props.category];
+    const icon = CATEGORY_ICON[this.props.category];
     const style = this.getStyle();
     return (
       <ListItem
@@ -96,12 +66,33 @@ class CategoryMenuItem extends Component {
 }
 
 CategoryMenuItem.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+  history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
+  closeDrawer: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
   category: PropTypes.number.isRequired,
-  onClickRdx: PropTypes.func.isRequired,
+  setCategory: PropTypes.func.isRequired,
+  fetchGames: PropTypes.func.isRequired,
 };
 
-export default withRouter(CategoryMenuItem);
+/**
+ * Redux State to Props
+ */
+const mapStateToProps = (state, ownProps) => ({
+  active: (ownProps.category === state.command.category),
+});
+
+/**
+ * Redux Dispacher to Props func
+ */
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  setCategory: () => {
+    dispatch(setCategory(ownProps.category));
+  },
+  fetchGames: () => {
+    dispatch(fetchGames(ownProps.category));
+  },
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CategoryMenuItem),
+);

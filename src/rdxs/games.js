@@ -1,3 +1,5 @@
+import GameService from '../services/gameService';
+
 const SET_GAMES = 'SET_GAMES';
 const INC_STAR = 'INC_STAR';
 const INC_ACCESS = 'INC_ACCESS';
@@ -16,6 +18,19 @@ export const incAccess = id => ({
   type: INC_ACCESS,
   id,
 });
+
+export const fetchGames = category => (
+  (dispatch) => {
+    const success = (res) => {
+      console.log('fatchGames SUCCESS!!');
+      dispatch(setGames(res.data));
+    };
+    const fail = (err) => {
+      console.log(`ERROR !!!! ${err}`);
+    };
+    GameService.getGames(category, success, fail);
+  }
+);
 
 export const games = (state = [], action) => {
   switch (action.type) {

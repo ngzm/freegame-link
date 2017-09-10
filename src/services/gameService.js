@@ -3,13 +3,11 @@ import naxios from '../libs/naxios';
 /**
  * File Upload 処理用サービス
  */
-export default class UploadService {
+export default class GameService {
   /**
    * get games which belongs to the category
    */
   static getGames(category, success, fail) {
-    console.log('naxios --- getGames in --');
-
     // const url = (category) ? `/game/category/${category}` : '/game/category/';
     const url = `/games/games${category}.json`;
     naxios.get(url)

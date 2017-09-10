@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { GridList } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
-import RdxGameGridTile from '../containers/RdxGameGridTile';
+import { CATEGORY_LABEL } from '../services/gameCategory';
+import GameGridTile from './GameGridTile';
 import AppStyle, { calcGridCols, calcGridWidth } from './AppStyle';
 import './Main.css';
 
@@ -11,16 +14,14 @@ const GameGridList = ({ wsize, category, games }) => {
   const width = calcGridWidth(cols);
   const cellHeight = AppStyle.MAIN_GRIDTILE_HEIGHT;
   const padding = AppStyle.MAIN_GRIDLIST_PAD;
+  const categoryLabel = CATEGORY_LABEL[category];
   const gameTiles = games.map(g => (
-    <RdxGameGridTile key={g.id} game={g} />
+    <GameGridTile key={g.id} game={g} />
   ));
-
-  console.log(`cols = ${cols}`);
-  console.log(`width = ${width}`);
 
   return (
     <GridList style={{ width }} cellHeight={cellHeight} padding={padding} cols={cols}>
-      <Subheader>{category}</Subheader>
+      <Subheader>{categoryLabel}</Subheader>
       {gameTiles}
     </GridList>
   );
@@ -43,4 +44,16 @@ GameGridList.propTypes = {
   })).isRequired,
 };
 
-export default GameGridList;
+/**
+ * Redux State to props
+ */
+const mapStateToProps = state => ({
+  wsize: state.vwindow.width,
+  category: state.command.category,
+  games: state.games,
+});
+
+/**
+ * Redux connect
+ */
+export default withRouter(connect(mapStateToProps)(GameGridList));

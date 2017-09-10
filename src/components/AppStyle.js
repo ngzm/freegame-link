@@ -10,6 +10,15 @@ export default style;
 
 export const getWinSize = () => window.innerWidth;
 
+/*
+export const getYPos = () => (
+  (window.pageYOffset !== undefined) ? window.pageYOffset : document.documentElement.scrollTop
+);
+*/
+
+export const getYPos = () => window.scrollY;
+export const setYPos = (y) => { window.scrollTo(0, y); };
+
 export const calcGridCols = (winSize) => {
   const mWidth = (winSize > style.MINIMUM_PC_WIDTH) ? (winSize - 320) - 120 : winSize - 120;
   return Math.floor(mWidth / style.MAIN_GRIDTILE_WIDTH);

@@ -27,9 +27,9 @@ export default class SideMenuMobile extends Component {
         onRequestChange={(o) => { this.props.onChange(o); }}
       >
         <SideMenuHeader onClick={cfunc} />
-        <CommandMenu onClick={cfunc} />
+        <CommandMenu closeDrawer={cfunc} />
         <Divider />
-        <CategoryMenu onClick={cfunc} />
+        <CategoryMenu closeDrawer={cfunc} />
         <Divider />
         <MenuItem onClick={cfunc}>Menu Item 1</MenuItem>
         <MenuItem onClick={cfunc}>Menu Item 2</MenuItem>

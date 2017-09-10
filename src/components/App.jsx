@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Header from './Header';
 import HeaderMobile from './HeaderMobile';
@@ -7,9 +9,11 @@ import Main from './Main';
 import SideMenu from './SideMenu';
 import Footer from './Footer';
 import AppStyle, { getWinSize } from './AppStyle';
+import { fetchGames } from '../rdxs/games';
+import { setWinWidth } from '../rdxs/vwindow';
 import './App.css';
 
-const BaseFramePC = ({ wsize }) => (
+const BaseFramePC = () => (
   <div className="basepanel">
     <Header />
     <div className="pc">
@@ -17,29 +21,22 @@ const BaseFramePC = ({ wsize }) => (
         <SideMenu />
       </div>
       <div className="main">
-        <Main wsize={wsize} />
+        <Main />
       </div>
     </div>
     <Footer />
   </div>
 );
-BaseFramePC.propTypes = { wsize: PropTypes.number.isRequired };
 
-const BaseFrameMobile = ({ wsize }) => (
+const BaseFrameMobile = () => (
   <div className="basepanel">
     <HeaderMobile />
-    <Main wsize={wsize} />
+    <Main />
     <Footer />
   </div>
 );
-BaseFrameMobile.propTypes = { wsize: PropTypes.number.isRequired };
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { winWidth: getWinSize() };
-  }
-
+class App extends Component {
   componentWillMount() {
     this.resizeHandler = () => { this.setWinSize(); };
     this.setWinSize();
@@ -47,18 +44,19 @@ export default class App extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.resizeHandler);
+    this.props.fetchGames();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeHandler);
   }
 
   setWinSize() {
-    this.setState({ winWidth: getWinSize() });
+    this.props.onChangeWidth(getWinSize());
   }
 
   isMobile() {
-    return (this.state.winWidth < AppStyle.MINIMUM_PC_WIDTH);
-  }
-
-  componentWillUmount() {
-    window.removeEventListener('resize', this.resizeHandler);
+    return (this.props.width < AppStyle.MINIMUM_PC_WIDTH);
   }
 
   render() {
@@ -66,8 +64,40 @@ export default class App extends Component {
 
     return (
       <MuiThemeProvider>
-        <BaseFrame wsize={this.state.winWidth} />
+        <BaseFrame />
       </MuiThemeProvider>
     );
   }
 }
+
+App.propTypes = {
+  width: PropTypes.number.isRequired,
+  onChangeWidth: PropTypes.func.isRequired,
+  fetchGames: PropTypes.func.isRequired,
+};
+
+/**
+ * Redux State to Props
+ */
+const mapStateToProps = state => ({
+  width: state.vwindow.width,
+});
+
+/**
+ * Redux Dispacher to Props func
+ */
+const mapDispatchToProps = dispatch => ({
+  onChangeWidth: (width) => {
+    dispatch(setWinWidth(width));
+  },
+  fetchGames: () => {
+    dispatch(fetchGames(1));
+  },
+});
+
+/**
+ * Redux connect
+ */
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(App),
+);

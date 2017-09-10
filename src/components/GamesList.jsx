@@ -1,61 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import GameGridList from './GameGridList';
-import GameService from '../services/gameService';
 import './Main.css';
 
-export default class GamesList extends Component {
-  componentWillMount() {
-    console.log('GameList: willMount in');
-    window.scrollTo(0, 0);
-    this.getGameList(this.props.category);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log('GameList: willReceiveProps in');
-    console.log(`props category = ${this.props.category}`);
-    console.log(`nextprops category = ${nextProps.category}`);
-
-    if (this.props.category !== nextProps.category) {
-      console.log('reset game list');
-      this.getGameList(nextProps.category);
-    }
-  }
-
-  getGameList(category) {
-    GameService.getGames(category,
-      (res) => { this.props.setGames(res.data); },
-      (err) => { console.log(`Error!! ${err}`); },
-    );
-  }
-
-  render() {
-    return (
-      <div className="Container">
-        <GameGridList
-          wsize={this.props.wsize}
-          category={this.props.category}
-          games={this.props.games}
-        />
-      </div>
-    );
-  }
-}
-
-GamesList.propTypes = {
-  wsize: PropTypes.number.isRequired,
-  category: PropTypes.number.isRequired,
-  games: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    category1: PropTypes.number.isRequired,
-    category2: PropTypes.number.isRequired,
-    category3: PropTypes.number.isRequired,
-    iconUri: PropTypes.string.isRequired,
-    star: PropTypes.number.isRequired,
-    access: PropTypes.number.isRequired,
-  })).isRequired,
-  setGames: PropTypes.func.isRequired,
-};
+export default () => (
+  <div className="Container">
+    <GameGridList />
+  </div>
+);
