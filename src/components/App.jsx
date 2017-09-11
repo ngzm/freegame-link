@@ -11,6 +11,7 @@ import Footer from './Footer';
 import AppStyle, { getWinSize } from './AppStyle';
 import { fetchGames } from '../rdxs/games';
 import { setWinWidth } from '../rdxs/vwindow';
+import { CATEGORY_KEY } from '../services/gameCategory'; 
 import './App.css';
 
 const BaseFramePC = () => (
@@ -91,7 +92,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setWinWidth(width));
   },
   fetchGames: () => {
-    dispatch(fetchGames(1));
+    dispatch(fetchGames(CATEGORY_KEY.action));
   },
 });
 

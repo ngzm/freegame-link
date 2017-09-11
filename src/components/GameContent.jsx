@@ -35,6 +35,8 @@ class GameContent extends Component {
 
         <div>
           <Link to="/">Main</Link>
+          <br />
+          <a href="" onClick={() => { window.history.back(); }}>- Back -</a>
         </div>
       </section>
     );

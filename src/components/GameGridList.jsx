@@ -20,10 +20,12 @@ const GameGridList = ({ wsize, category, games }) => {
   ));
 
   return (
-    <GridList style={{ width }} cellHeight={cellHeight} padding={padding} cols={cols}>
-      <Subheader>{categoryLabel}</Subheader>
-      {gameTiles}
-    </GridList>
+    <section className="Container">
+      <GridList style={{ width }} cellHeight={cellHeight} padding={padding} cols={cols}>
+        <Subheader>{categoryLabel}</Subheader>
+        {gameTiles}
+      </GridList>
+    </section>
   );
 };
 
