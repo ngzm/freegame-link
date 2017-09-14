@@ -1,0 +1,23 @@
+.basepanel {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  background-color: #FFFFFF;
+  list-style: none;
+}
+
+.basepanel .pc {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.basepanel .pc .main {
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.basepanel .pc .menu {
+  -webkit-flex: 0 0 300px;
+  flex: 0 0 300px;
+}

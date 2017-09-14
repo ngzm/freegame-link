@@ -5,10 +5,32 @@ Game
 game_id
 title
 url
-category
-overview
+category1
+category2
+category3
 description
+icon_image
+icon_url
 
+
+-------
+category
+-------
+category_id
+category_name
+
+ 1: Action
+ 2: Adventure
+ 3: Racing
+ 4: Shooting
+ 5: Battle
+ 6: Sports
+ 7: Fancy
+ 8: Puzzle
+ 9: Jewels
+10: Brain
+11: Table
+12: Variety
 
 -------
 Access

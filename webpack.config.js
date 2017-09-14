@@ -28,5 +28,6 @@ module.exports = {
     contentBase: 'result', // Relative directory for base of server
     port: 3000, // Port Number
     host: 'localhost', // Change to '0.0.0.0' for external facing server
+    historyApiFallback: true,
   },
 };

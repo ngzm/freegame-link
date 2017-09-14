@@ -1,0 +1,15 @@
+.Main {
+  margin: 0;
+  padding: 18px;
+}
+
+.Main .Container {
+  padding: 30px 0;
+  background-color: lightgray;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap:         wrap;
+  -webkit-justify-content: space-around;
+  justify-content:         space-around;
+}
